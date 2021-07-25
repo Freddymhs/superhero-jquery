@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+  <label for="query">Search the Superhero API:</label>
+
+  <input id="one"></input>
+  <button id="submit">Submit</button>
+  <h1 id="name"></h1>
+  <img src="" id="photo">
+
+
+  <script>
+    window.onload = () => {
+      function askSuperheroApi() {
+        let query = $("#one").val().toLowerCase();
+        console.log(query)
+        fetch(`https://superheroapi.com/api/10159755607079235/search/${query}`)
+          .then(res => res.json())
+          .then((out) => {
+            console.log(out)
+            name = out.results[0].name;
+            pic = out.results[0].image.url;
+
+            document.getElementById("photo").src = pic;
+            document.getElementById("name").innerHTML = name;
+          })
+          .catch(err => console.log(err))
+      }
+
+      document.getElementById('submit').addEventListener("click", function () {
+
+        askSuperheroApi();
+      })
+    }
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
