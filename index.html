@@ -25,8 +25,11 @@
       function askSuperheroApi() {
         let query = $("#one").val().toLowerCase();
         console.log(query)
-        fetch(`https://superheroapi.com/api/10159755607079235/search/${query}`)
-          .then(res => res.json())
+        fetch(`https://superheroapi.com/api/10159755607079235/search/${query}`, { mode: 'no-cors' })
+          .then(res => {
+            console.log(res)
+            res.json()
+          })
           .then((out) => {
             console.log(out)
             name = out.results[0].name;
